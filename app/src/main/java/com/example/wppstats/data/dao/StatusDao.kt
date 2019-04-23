@@ -6,13 +6,18 @@ import com.example.wppstats.data.model.ObUsuario
 class StatusDao {
 
     companion object {
+        private var id = 0
+        get() {
+            field ++
+            return field
+        }
         private val statusNovos = arrayListOf(
-            ObStatus(1,true, "https://api.adorable.io/avatars/285/1.png", "", ObUsuario("usuario1")),
-            ObStatus(2,true, "", "Exemplo com texto curto", ObUsuario("usuario2")),
-            ObStatus(3,true, "https://api.adorable.io/avatars/285/23.png", "", ObUsuario("usuario3")),
-            ObStatus(4,true, "https://api.adorable.io/avatars/285/597.png", "", ObUsuario("usuario4")),
-            ObStatus(5,true, "", "Exemplo de um texto longo para mostrar na tela de visualização", ObUsuario("usuario5")),
-            ObStatus(6,true, "https://api.adorable.io/avatars/285/06651.png", "", ObUsuario("usuario6"))
+            ObStatus(id,true, false, "https://api.adorable.io/avatars/285/1.png", "", ObUsuario("usuario1")),
+            ObStatus(id,true, false, "", "Exemplo com texto curto", ObUsuario("usuario2")),
+            ObStatus(id,true, false, "https://api.adorable.io/avatars/285/23.png", "", ObUsuario("usuario3")),
+            ObStatus(id,true, false, "https://api.adorable.io/avatars/285/597.png", "", ObUsuario("usuario4")),
+            ObStatus(id,true, false, "", "Exemplo de um texto longo para mostrar na tela de visualização", ObUsuario("usuario5")),
+            ObStatus(id,true, false, "https://api.adorable.io/avatars/285/06651.png", "", ObUsuario("usuario6"))
         )
 
         private val statusLidos = ArrayList<ObStatus>()
@@ -41,6 +46,14 @@ class StatusDao {
                 return
             }
         }
+    }
+
+    fun criaStatusImagem(path: String) {
+        statusNovos.add(ObStatus(StatusDao.id, true, false, path, "", ObUsuario("Meu Status")))
+    }
+
+    fun criaStatusTexto(texto: String) {
+        statusNovos.add(ObStatus(StatusDao.id, true, false, "", texto, ObUsuario("Meu Status")))
     }
 
 }
