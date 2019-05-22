@@ -135,8 +135,8 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (Activity.RESULT_OK == resultCode && data != null) {
-            if (REQUEST_CODE_TO_RESULT == requestCode) {
+        if (Activity.RESULT_OK == resultCode ) {
+            if (REQUEST_CODE_TO_RESULT == requestCode && data != null) {
                 val paths = data.getSerializableExtra(PARAM_RESULT_ITEMS_PATHS) as ArrayList<String>
                 for (path in paths) {
                     StatusDao().criaStatusImagem(path)
